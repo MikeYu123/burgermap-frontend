@@ -2,23 +2,27 @@ import React, { Component, PropTypes } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import Map from './MapContainer'
 import MainSection from '../components/MainSection';
-import * as TodoActions from '../actions/todos';
-
-// For Customization Options, edit  or use
-// './src/material_ui_raw_theme_file.jsx' as a template.
+import * as DrawerActions from '../actions/drawer';
+import * as CardActions from '../actions/cards';
+import * as MarkerActions from '../actions/markers';
+import GoogleMap from 'google-map-react';
+import MapContainer from '../containers/MapContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import theme from '../src/material_ui_raw_theme_file'
+import MenuDrawer from './MenuDrawer'
 
 class App extends Component {
   render() {
-    const { todos, actions } = this.props;
+    const { markers, actions, cards, drawer } = this.props;
     return (
       <div>
         <MuiThemeProvider muiTheme={theme}>
           <div>
-            <Header addTodo={actions.addTodo}/>
-            <MainSection todos={todos} actions={actions}/>
+            <Header addMarker={actions.addMarker} openDrawer={actions.openDrawer}/>
+            <MenuDrawer closeDrawer={actions.closeDrawer} open={drawer}/>
+            <MapContainer markers={markers} cards={cards} actions={actions}/>
           </div>
         </MuiThemeProvider>
       </div>
@@ -27,19 +31,23 @@ class App extends Component {
 }
 
 App.propTypes = {
-  todos: PropTypes.array.isRequired,
+  markers: PropTypes.array.isRequired,
+  cards: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    todos: state.todos
+    markers: state.markers,
+    cards: state.cards,
+    drawer: state.drawer
   };
 }
 
 function mapDispatchToProps(dispatch) {
+  let actions = Object.assign(MarkerActions, CardActions, DrawerActions);
   return {
-    actions: bindActionCreators(TodoActions, dispatch)
+    actions: bindActionCreators(actions, dispatch)
   };
 }
 

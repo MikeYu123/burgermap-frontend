@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+import markers from './markers';
+import cards from './cards';
+import drawer from './drawer'
 
 const rootReducer = combineReducers({
-    todos
+    markers,
+    cards,
+    drawer
 });
 
 export default rootReducer;
