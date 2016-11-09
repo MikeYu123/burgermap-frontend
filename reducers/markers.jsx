@@ -3,14 +3,12 @@ import { ADD_MARKER, DELETE_MARKER, EDIT_MARKER } from '../constants/ActionTypes
 const initialState = [{
   id: 1,
   lat: 55.781077,
-  lng: 37.6000041,
-  text: 'Burger Story'
+  lng: 37.6000041
 },
   {
     id: 3,
     lat: 55.7828555,
-    lng: 37.5982967,
-    text: 'Lucky'
+    lng: 37.5982967
   }];
 
 export default function markers(state = initialState, action) {
