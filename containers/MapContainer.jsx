@@ -35,6 +35,24 @@ class MapContainer extends Component{
         }
     }
 
+    renderCard(card) {
+        if (card.id) {
+            return (
+                <MapCard key={"card" + card.id}
+                     lat={card.lat}
+                     lng={card.lng}
+                     title={card.title}
+                     img={card.img}
+                     link={card.link}
+                     mark={card.mark}
+                     description={card.description}
+                     shortDescription={card.shortDescription}
+                />
+            );
+        }
+        else
+            return;
+    }
 
     render() {
         return(
@@ -47,18 +65,7 @@ class MapContainer extends Component{
                     center={this.state.center}
                     zoom={this.state.zoom}
                 >
-                    {
-                        this.props.cards.map((card) => <MapCard key={"card" + card.id}
-                                                                        lat={card.lat}
-                                                                        lng={card.lng}
-                                                                        title={card.title}
-                                                                        img={card.img}
-                                                                        link={card.link}
-                                                                        mark={card.mark}
-                                                                        description={card.description}
-                                                                        shortDescription={card.shortDescription}
-                                                        />)
-                    }
+                    {this.renderCard(this.props.card)}
                     {
                         this.props.markers.map((marker) => <MapMarker id={marker.id} key={"marker" + marker.id} size={90} zoom={9} lat={marker.lat} lng={marker.lng} openCard={this.props.actions.openCard}/>)
                     }
@@ -72,12 +79,12 @@ MapContainer.propTypes = {
     zoom: PropTypes.number.isRequired,
     center: PropTypes.object,
     markers: PropTypes.array,
-    cards: PropTypes.array
+    card: PropTypes.object
 };
 MapContainer.defaultProps = {
     zoom: 12,
     center:  {lat: 59.724465, lng: 30.080121},
     markers: [],
-    cards: []
+    card: {}
 };
 export default MapContainer

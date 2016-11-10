@@ -14,15 +14,19 @@ import theme from '../src/material_ui_raw_theme_file'
 import MenuDrawer from './MenuDrawer'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.actions.initMarkers()
+  }
+
   render() {
-    const { markers, actions, cards, drawer } = this.props;
+    const { markers, actions, card, drawer } = this.props;
     return (
       <div>
         <MuiThemeProvider muiTheme={theme}>
           <div>
             <Header addMarker={actions.addMarker} openDrawer={actions.openDrawer}/>
             <MenuDrawer closeDrawer={actions.closeDrawer} open={drawer}/>
-            <MapContainer markers={markers} cards={cards} actions={actions}/>
+            <MapContainer markers={markers} card={card} actions={actions}/>
           </div>
         </MuiThemeProvider>
       </div>
@@ -32,14 +36,14 @@ class App extends Component {
 
 App.propTypes = {
   markers: PropTypes.array.isRequired,
-  cards: PropTypes.array.isRequired,
+  card: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
   return {
     markers: state.markers,
-    cards: state.cards,
+    card: state.card,
     drawer: state.drawer
   };
 }

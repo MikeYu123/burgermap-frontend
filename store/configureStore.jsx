@@ -1,11 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, app } from 'redux';
 import rootReducer from '../reducers';
+import rootMiddleware from '../middleware';
 
 export default function configureStore(initialState) {
   const store = createStore(
-    rootReducer,
-    initialState,
-    window.devToolsExtension ? window.devToolsExtension() : undefined
+      rootReducer,
+      initialState,
+      rootMiddleware
   );
 
   if (module.hot) {

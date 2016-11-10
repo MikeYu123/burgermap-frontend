@@ -1,7 +1,10 @@
-export const ADD_MARKER = 'ADD_TODO';
-export const DELETE_MARKER = 'DELETE_TODO';
+export const ADD_MARKER = 'ADD_MARKER';
+export const DELETE_MARKER = 'DELETE_MARKER';
 export const EDIT_MARKER = 'EDIT_MARKER';
 export const OPEN_CARD = 'OPEN_CARD';
 export const DROP_CARD = 'DROP_CARD';
+export const SHOW_CARD = 'SHOW_CARD';
 export const OPEN_DRAWER = 'OPEN_DRAWER';
 export const CLOSE_DRAWER = 'CLOSE_DRAWER';
+export const INIT_MARKERS = 'INIT_MARKERS';
+export const CREATE_MARKERS = 'CREATE_MARKERS';
