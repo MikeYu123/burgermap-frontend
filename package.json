@@ -65,6 +65,7 @@
     "enzyme": "2.5.1",
     "react-addons-test-utils": "15.3.2",
     "expect": "1.20.2",
-    "immutable": "3.8.1"
+    "immutable": "3.8.1",
+    "react-router": "*"
   }
 }
